@@ -16,5 +16,10 @@ collection.add(
     metadatas=[{"topic": "devops"}, {"topic": "ai"}, {"topic": "food"}],
 )
 
-results = collection.query(query_texts=["how do I ship my app?"], n_results=2)
+results = collection.query(
+    query_texts=["how do I ship my app?"],
+    n_results=3,
+    include=["documents", "distances"],
+)
 print(results["documents"])
+print(results["distances"])
