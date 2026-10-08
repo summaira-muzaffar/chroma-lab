@@ -4,17 +4,19 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - chroma_data:/data      # keeps your data after restart
+      - chroma_data:/data
 
   app:
     build: .
     depends_on:
       - chroma
     environment:
-      - CHROMA_HOST=chroma     # service name works as hostname
+      - CHROMA_HOST=chroma
     volumes:
-      - .:/app                 # edit code without rebuilding
+      - .:/app
+      - model_cache:/root/.cache/chroma
     command: python app.py
 
 volumes:
   chroma_data:
+  model_cache:
