@@ -2,3 +2,4 @@ chromadb-client
 onnxruntime
 tokenizers
 tqdm
+streamlit

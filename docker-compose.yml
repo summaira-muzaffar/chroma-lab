@@ -17,6 +17,19 @@ services:
       - model_cache:/root/.cache/chroma
     command: python app.py
 
+  web:
+    build: .
+    depends_on:
+      - chroma
+    environment:
+      - CHROMA_HOST=chroma
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+      - model_cache:/root/.cache/chroma
+    command: streamlit run streamlit_app.py --server.address=0.0.0.0 --server.port=8501
+
 volumes:
   chroma_data:
   model_cache:
